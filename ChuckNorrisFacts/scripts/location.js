@@ -29,7 +29,6 @@
     }
     
     var onGeolocationSuccess = function(position){
-        
         var template = kendo.template("<h3><span>" + "Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + "</span></h3>");
         $('#tabstrip-location').append(template);     
     }
