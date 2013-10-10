@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+        <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <link href="styles/main.css" rel="stylesheet" />
+
+        <script src="cordova.js"></script>
+        <script src="kendo/js/jquery.min.js"></script>
+        <script src="kendo/js/kendo.mobile.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+        <script src="scripts/menu.js"></script>
+        <script src="scripts/random.js"></script>
+        <script src="scripts/location.js"></script>
+        <script src="scripts/app.js"></script>
+
+    </head>
+    <body>
+        <!--Home-->
+        <div id="tabstrip-home" 
+             data-role="view"  
+             data-title="Home">
+
+            <div class="view-content">
+                <h1>Welcome to the random Chuck Norris facts app!</h1>
+                <p>
+                    Click on the menu buttons to get a random fact or to see what Chuck Norris knows about you.
+                </p>
+            </div>
+        </div>
+
+        <!--Random-->
+        <div id="tabstrip-random" 
+             data-role="view"  
+             data-title="Random joke" 
+             data-model="app.random.viewModel">
+
+            <div class="jokes">
+                <!--Chose a listview because in the future we might want to implement having more than one joke-->
+                <ul class="jokes-list" 
+                    data-role="listview" 
+                    data-bind="source: randomDataSource" 
+                    data-template="random-template">
+                </ul>
+                
+                <div class="separator">
+                    <div class="dark"></div>
+                    <div class="light"></div>
+                </div>
+                
+                <a id="new-joke-button" data-click="app.random.viewModel.newJoke" data-role="button" style="display: block; margin: 2em; text-align: center;">new fact</a>
+                <div id="test"></div>
+            </div>
+        </div>
+
+        <!--Random Joke template-->
+        <script type="text/x-kendo-tmpl" id="random-template">
+            <div >
+                <div>
+                    <span class="joke-info">${joke}</span>
+                </div>
+            </div>
+        </script>
+
+        <!-- Location and movement -->
+        
+        <div id="tabstrip-location" 
+             data-role="view"  
+             data-title="Location and movement">
+            <h1>Chuck Norris knows where you are...</h1>
+        </div>
+        
+        <!--Layout-->
+        <div data-role="layout" data-id="tabstrip-layout" >
+
+            <!--Header-->
+            <div data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div data-role="footer">
+                
+                <!-- Menu -->
+                <div id="menu" data-bind="visible: isVisible" class="view-content">
+                	<p>Carlos Ray "Chuck" Norris (born March 10, 1940) is an American martial artist and actor. After serving in the United States Air Force, he began his rise to fame as a martial artist, and has since founded his own school, Chun Kuk Do.</p>
+                    <p>Norris appeared in a number of action films, such as Way of the Dragon, in which he starred alongside Bruce Lee. He played the starring role in the television series Walker, Texas Ranger from 1993 until 2001.</p>
+                    <p>His net worth ,as of 2013, is around $70,000,000.</p>
+                </div>
+                <!--<a href="" data-role="button" id="test-button" >hide/show menu</a>-->
+                    
+                <div id="tabstrip" data-role="tabstrip">
+                    <a href="#tabstrip-home" data-icon="home">Home</a>
+                    <a href="#tabstrip-location" data-icon="camera">Location and movement</a>
+                    <a href="#tabstrip-random" data-icon="featured">Random Fact</a>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
