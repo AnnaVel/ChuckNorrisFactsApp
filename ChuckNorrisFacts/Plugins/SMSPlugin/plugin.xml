@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0" id="com.phonegap.plugins.smsplugin"
+				version="0.1.0">
+
+	<asset src="www/smsplugin.js" target="Plugins/SMSPlugin/smsplugin.js" />
+
+	<!-- android -->
+	<platform name="android">
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.SEND_SMS" />
+		</config-file>
+		<config-file target="res/xml/plugins.xml" parent="/plugins">
+			<plugin name="SmsPlugin"
+							value="com.phonegap.plugins.smsplugin.SmsPlugin"/>
+		</config-file>
+		<config-file target="res/xml/config.xml" parent="plugins">
+			<plugin name="SmsPlugin"
+							value="com.phonegap.plugins.smsplugin.SmsPlugin"/>
+		</config-file>
+
+		<source-file src="src/android/SmsPlugin.java" target-dir="src/com/phonegap/plugins/smsplugin" />
+	</platform>
+</plugin>

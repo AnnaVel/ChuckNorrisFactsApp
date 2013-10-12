@@ -14,6 +14,8 @@
         <script src="scripts/menu.js"></script>
         <script src="scripts/random.js"></script>
         <script src="scripts/location.js"></script>
+        <script type="text/javascript" src="Plugins/SMSPlugin/www/smsplugin.js"></script>
+        <script src="scripts/sms.js"></script>
         <script src="scripts/app.js"></script>
 
     </head>
@@ -51,6 +53,7 @@
                 </div>
                 
                 <a id="new-joke-button" data-click="app.random.viewModel.newJoke" data-role="button" style="display: block; margin: 2em; text-align: center;">new fact</a>
+                <a id="send-joke-button" data-click="app.random.viewModel.sendJoke" data-role="button" style="display: block; margin: 2em; text-align: center;">send this fact as sms</a>
                 <div id="test"></div>
             </div>
         </div>
@@ -68,9 +71,37 @@
         
         <div id="tabstrip-location" 
              data-role="view"  
-             data-title="Location and movement">
+             data-title="Location and Movement">
             <h1>Chuck Norris knows where you are...</h1>
         </div>
+        
+        <!-- Send sms -->
+        
+        <div id="tabstrip-sms"
+             data-role="view"  
+             data-title="Send Sms"
+             data-model="app.sms.viewModel">
+            
+            <div class="jokes">
+                <ul class="contacts-list" 
+                    data-role="listview" 
+                    data-bind="source: contactsDataSource" 
+                    data-template="contacts-template">
+                </ul>
+            </div>
+            <input id="phone-input" style="display: block; margin: 2em; text-align: center;" />
+            <a id="send-button" data-click="app.sms.viewModel.sendSms" data-role="button" style="display: block; margin: 2em; text-align: center;">send</a>
+        </div>
+        
+        <!--Contacts template-->
+        <script type="text/x-kendo-tmpl" id="contacts-template">
+            <div >
+                <div>
+                    <span class="joke-info">${displayName}</span>
+                    <span class="joke-info">${phoneNumbers[0]}</span>
+                </div>
+            </div>
+        </script>
         
         <!--Layout-->
         <div data-role="layout" data-id="tabstrip-layout" >
@@ -97,6 +128,7 @@
                     <a href="#tabstrip-home" data-icon="home">Home</a>
                     <a href="#tabstrip-location" data-icon="camera">Location and movement</a>
                     <a href="#tabstrip-random" data-icon="featured">Random Fact</a>
+                    <a href="#tabstrip-sms" data-icon="share">Send as sms</a>
                 </div>
             </div>
             

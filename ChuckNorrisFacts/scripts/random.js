@@ -5,6 +5,7 @@
     RandomViewModel = kendo.data.ObservableObject.extend({
         randomDataSource: null,
         dataSource: null,
+        currentJoke: "",
         
         init: function () {
             var that = this;
@@ -17,6 +18,7 @@
                 
                 var randomnumber = Math.floor(Math.random()*allJokes.length);
                 var joke = allJokes[randomnumber];
+                that.currentJoke = joke;
                 
                 kendo.data.ObservableObject.fn.init.apply(that, []);
                 
@@ -48,6 +50,13 @@
                         
                });
             });
+        },
+        
+        sendJoke: function(){
+            navigator.notification.vibrate(1000);
+            
+            var app = new kendo.mobile.Application();
+            app.navigate("#tabstrip-sms");
         }
         
     });  
